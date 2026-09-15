@@ -92,16 +92,22 @@ export const projects = [
 
 
 export const workExperience = [
-	
 	{
-  		id: 1,
+		id: 1,
+		title: "Research Trainee\nBhabha Atomic Research Centre (BARC)",
+		desc: "Conducting research on intelligent network intrusion detection using hybrid deep learning, NetFlow analysis, and transformer-based attention. Evaluating models on large-scale traffic datasets to improve threat detection, robustness, and accuracy while reducing false positives.",
+		className: "md:col-span-2",
+		thumbnail: "/barclogo.png",
+	},
+	{
+		id: 2,
   		title: "Project Trainee\nBhabha Atomic Research Centre (BARC)",
   		desc: "Developed an unsupervised network anomaly detection system using an ensemble of autoencoders to model normal traffic and flag anomalies via reconstruction error. Worked with Scientific Officers in a high security research environment and validated detection on large scale IoT traffic exceeding 100k flows.",
   		className: "md:col-span-2",
   		thumbnail: "/barclogo.png",
 	},
 	{
-		id: 2,
+		id: 3,
 		title: "Student Coordinator\nTraining & Placement Office",
 		desc: "Assisted in coordinating campus recruitment drives and student-company interactions. Helped organize workshops and placement-focused events, ensuring smooth execution. Acted as a point of contact to resolve student queries and ensure smooth operations.",
 		className: "md:col-span-2",
@@ -113,7 +119,8 @@ export const extensions = [
 	{
 		id: 1,
 		title: "CAPTCHA OCR Cropper\n(VS Code Extension)",
-		desc: "A VS Code extension that opens a webview where you can load or paste an image, drag a crop rectangle, and run OCR on the cropped area using OCR.space. Features instant OCR with preprocessing (upscaling + grayscale threshold) happening locally. Adjust threshold and scale sliders for improved accuracy with automatic re-runs.",
+		desc: "This VS Code extension opens a webview where you can load or paste an image, crop a region, and run OCR using OCR.space. It includes local preprocessing, adjustable threshold and scale controls, and automatic re-runs for improved accuracy.",
+		badges: ["Downloaded by 300+ people", "Under development"],
 		className: "md:col-span-2",
 		thumbnail: "/ocr.png",
 		url: "https://marketplace.visualstudio.com/items?itemName=AryanGaikwad.captcha-ocr-cropper",
@@ -134,7 +141,7 @@ export const socialMedia = [
 	{
 		id: 3,
 		img: "/resumeicon.png",
-		url: "https://drive.google.com/file/d/1JBU8vAxSub5zITsOciywGFjaN2bbsklw/view?usp=sharing",
+		url: "https://drive.google.com/file/d/1nWv52KR01Pth-SOdBLHQdVdq1j8obF4X/view?usp=sharing",
 	},
 ];
 
@@ -143,6 +150,23 @@ export const socialMedia = [
 //  projects for 3d screen
 
 export const myProject = [
+	{
+		title: 'Network Intrusion Detection System',
+		desc: 'Built a machine learning system to identify suspicious patterns in network traffic and support faster cybersecurity monitoring.',
+		subdesc:
+			'Focused on improving threat detection, reducing false alarms, and making security analysis more reliable across different types of network activity.',
+		href: '',
+		texture: '/textures/project/cybersecurity-animation.mp4',
+		videoOnly: true,
+		logo: '/assets/cybersecurity-logo.svg',
+		logoStyle: {
+			backgroundColor: '#0B1220',
+			border: '0.2px solid #58E6B1',
+			boxShadow: '0px 0px 60px 0px #58E6B14D',
+		},
+		spotlight: '/assets/spotlight3.png',
+		tags: [],
+	},
   {
     title: 'NutriLens - AI-Powered Nutrition Assistant',
     desc: 'Developed a fully free web app that analyzes food images to deliver real-time nutritional insights using AI.',

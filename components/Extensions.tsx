@@ -29,6 +29,16 @@ const Extensions = () => {
 							<Image src={card.thumbnail} alt={card.thumbnail} className="lg:w-24 md:w-20 w-16" width={96} height={96} />
 							<div className="w-full">
 								<h1 className="text-start text-xl md:text-2xl font-bold text-black whitespace-pre-line">{card.title}</h1>
+								<div className="flex flex-wrap gap-2 mt-3">
+									{card.badges?.map((badge, index) => (
+										<span
+											key={badge}
+											className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-bold ${index === 0 ? "bg-mustard text-black" : "bg-black text-white"}`}
+										>
+											{badge}
+										</span>
+									))}
+								</div>
 								<p className="text-start text-black mt-3 font-semibold text-sm">{card.desc}</p>
 								<a href={card.url} target="_blank" rel="noopener noreferrer" className="mt-4 inline-block px-4 py-2 bg-mustard text-black rounded-lg font-semibold hover:bg-opacity-90 transition-all">
 									Visit <FaExternalLinkAlt className="w-4 h-4 inline ml-2" />

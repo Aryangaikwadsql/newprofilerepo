@@ -17,7 +17,7 @@
     </div>
     
    <div align="center">
-     <h3><a href="https://myportfolio-ztso.vercel.app/demo">Live Demo</a></h3>
+     <h3><a href="https://portfolio-aryan-gaikwad.vercel.app/">Live Demo</a></h3>
    </div>
 </div>
 
