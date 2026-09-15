@@ -1,4 +1,5 @@
 "use client";
+import dynamic from "next/dynamic";
 
 import { navItems } from "@/data";
 
@@ -10,8 +11,12 @@ import Experience from "@/components/Experience";
 import Extensions from "@/components/Extensions";
 import RecentProjects from "@/components/RecentProjects";
 import { FloatingNav } from "@/components/ui/FloatingNavbar";
-import Projects from "@/components/projects/Projects";
 import Contact from "@/components/contact/Contact";
+
+const Projects = dynamic(() => import("@/components/projects/Projects"), {
+  ssr: false,
+  loading: () => <section className="c-space my-20 min-h-[32rem]" aria-hidden="true" />,
+});
 
 // export const metadata: Metadata = {
 //   title: "Home",

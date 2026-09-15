@@ -49,7 +49,7 @@ const Hero = () => {
 					/>
 
 					<p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
-						Hi! I&apos;m Aryan Gaikwad, Ex-Intern @BARC based in Mumbai, India.
+						Hi! I&apos;m Aryan Gaikwad, Research Trainee @BARC based in Mumbai, India.
 					</p>
 
 					<a href="#about">

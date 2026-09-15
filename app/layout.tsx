@@ -78,8 +78,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon1.png" sizes="192x192" />
-        <link rel="apple-touch-icon" href="/favicon1.png" />
+        <link rel="icon" href="/imagenew.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/imagenew.svg" />
       </head>
       <body className={inter.className}>
         <ThemeProvider

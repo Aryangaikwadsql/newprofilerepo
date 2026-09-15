@@ -1,6 +1,6 @@
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Center, OrbitControls } from '@react-three/drei';
 
@@ -11,7 +11,22 @@ import DemoComputer from './DemoComputer';
 const projectCount = myProject.length;
 
 const Projects = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
   const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { rootMargin: '0px' },
+    );
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleNavigation = (direction: string) => {
     setSelectedProjectIndex((prevIndex) => {
@@ -30,7 +45,7 @@ const Projects = () => {
   const currentProject = myProject[selectedProjectIndex];
 
   return (
-    <section className="c-space my-20" id="projects">
+    <section ref={sectionRef} className="c-space my-20" id="projects">
       <h1 className="heading">
 				A small selection of <span className="text-mustard">recent projects</span>
 			</h1>
@@ -61,14 +76,16 @@ const Projects = () => {
               ))}
             </div>
 
-            <a
-              className="flex items-center gap-2 cursor-pointer text-white-600"
-              href={currentProject.href}
-              target="_blank"
-              rel="noreferrer">
-              <p>Check Live Site</p>
-              <img src="/assets/arrow-up.png" alt="arrow" className="w-3 h-3" />
-            </a>
+            {currentProject.href && (
+              <a
+                className="flex items-center gap-2 cursor-pointer text-white-600"
+                href={currentProject.href}
+                target="_blank"
+                rel="noreferrer">
+                <p>Check Live Site</p>
+                <img src="/assets/arrow-up.png" alt="arrow" className="w-3 h-3" />
+              </a>
+            )}
           </div>
 
           <div className="flex justify-between items-center mt-7">
@@ -82,19 +99,35 @@ const Projects = () => {
           </div>
         </div>
 
-        <div className="border border-black-300 bg-black-200 rounded-lg h-96 md:h-full">
-          <Canvas>
-            <ambientLight intensity={Math.PI} />
-            <directionalLight position={[10, 10, 5]} />
-            <Center>
-              <Suspense fallback={<CanvasLoader />}>
-                <group scale={2} position={[0, -3, 0]} rotation={[0, -0.1, 0]}>
-                  <DemoComputer texture={currentProject.texture} />
-                </group>
-              </Suspense>
-            </Center>
-            <OrbitControls maxPolarAngle={Math.PI / 2} enableZoom={false} />
-          </Canvas>
+        <div className="border border-black-300 bg-black-200 rounded-lg h-96 md:h-full overflow-hidden">
+          {currentProject.videoOnly ? (
+            <video
+              className="h-full w-full object-cover"
+              src={currentProject.texture}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+            />
+          ) : (
+            <Canvas
+              dpr={[1, 1]}
+              frameloop={isVisible ? 'always' : 'never'}
+              gl={{ antialias: false, powerPreference: 'high-performance' }}
+            >
+              <ambientLight intensity={Math.PI} />
+              <directionalLight position={[10, 10, 5]} />
+              <Center>
+                <Suspense fallback={<CanvasLoader />}>
+                  <group scale={2} position={[0, -3, 0]} rotation={[0, -0.1, 0]}>
+                    <DemoComputer texture={currentProject.texture} />
+                  </group>
+                </Suspense>
+              </Center>
+              <OrbitControls maxPolarAngle={Math.PI / 2} enableZoom={false} />
+            </Canvas>
+          )}
         </div>
       </div>
     </section>
