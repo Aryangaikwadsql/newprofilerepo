@@ -12,8 +12,8 @@ interface DemoComputerProps {
   texture?: string;
   modelPath?: string;
   modelScale?: number;
-  modelPosition?: [number, number, number];
-  modelRotation?: [number, number, number];
+  modelPosition?: number[];
+  modelRotation?: number[];
 }
 
 const DemoComputer : React.FC<DemoComputerProps> = (props : any) => {
