@@ -10,14 +10,22 @@ import { Group } from 'three';
 
 interface DemoComputerProps {
   texture?: string;
+  modelPath?: string;
+  modelScale?: number;
+  modelPosition?: [number, number, number];
+  modelRotation?: [number, number, number];
 }
 
 const DemoComputer : React.FC<DemoComputerProps> = (props : any) => {
-  const group = useRef<Group>();
-  const { nodes, materials, animations } = useGLTF('/models/computer.glb') as any;
+  const group = useRef<Group>(null);
+  const modelUrl = props.modelPath || '/models/computer.glb';
+  const { nodes, materials, animations, scene } = useGLTF(modelUrl) as any;
   const { actions } = useAnimations(animations, group);
+  const isModelOnly = Boolean(props.modelPath);
 
-  const txt = useVideoTexture(props.texture ? props.texture : '/textures/project/project1.mp4');
+  const txt = useVideoTexture(
+    isModelOnly ? '/textures/project/project1.mp4' : (props.texture ? props.texture : '/textures/project/project1.mp4')
+  );
 
   useEffect(() => {
     if (txt) {
@@ -34,6 +42,18 @@ const DemoComputer : React.FC<DemoComputerProps> = (props : any) => {
       });
     }
   }, [txt]);
+
+  if (isModelOnly) {
+    const modelScale = props.modelScale ?? 0.38;
+    const modelPosition = props.modelPosition ?? [0, -0.9, 0];
+    const modelRotation = props.modelRotation ?? [0, Math.PI * 0.18, 0];
+
+    return (
+      <group ref={group} {...props} dispose={null}>
+        <primitive object={scene} scale={modelScale} position={modelPosition} rotation={modelRotation} />
+      </group>
+    );
+  }
 
   return (
     <group ref={group} {...props} dispose={null}>
