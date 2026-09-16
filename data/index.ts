@@ -120,7 +120,7 @@ export const extensions = [
 		id: 1,
 		title: "CAPTCHA OCR Cropper\n(VS Code Extension)",
 		desc: "This VS Code extension opens a webview where you can load or paste an image, crop a region, and run OCR using OCR.space. It includes local preprocessing, adjustable threshold and scale controls, and automatic re-runs for improved accuracy.",
-		badges: ["Downloaded by 300+ people", "Under development"],
+		badges: ["300+ installs", "Under development"],
 		className: "md:col-span-2",
 		thumbnail: "/ocr.png",
 		url: "https://marketplace.visualstudio.com/items?itemName=AryanGaikwad.captcha-ocr-cropper",
@@ -156,8 +156,13 @@ export const myProject = [
 		subdesc:
 			'Focused on improving threat detection, reducing false alarms, and making security analysis more reliable across different types of network activity.',
 		href: '',
-		texture: '/textures/project/cybersecurity-animation.mp4',
-		videoOnly: true,
+		texture: '',
+		modelPath: '/models/artificial_neural_network_ann.glb',
+		groupScale: 0.65,
+		modelScale: 0.15,
+		modelPosition: [0, 1.3, 0],
+		modelRotation: [0.15, Math.PI * 0.88, 0],
+		videoOnly: false,
 		logo: '/assets/cybersecurity-logo.svg',
 		logoStyle: {
 			backgroundColor: '#0B1220',
@@ -165,7 +170,38 @@ export const myProject = [
 			boxShadow: '0px 0px 60px 0px #58E6B14D',
 		},
 		spotlight: '/assets/spotlight3.png',
-		tags: [],
+		tags: [
+		  {
+		    id: 1,
+		    name: 'Python',
+		    path: '/assets/python.svg',
+		  },
+		  {
+		    id: 2,
+		    name: 'TensorFlow',
+		    path: '/assets/tensorflow.svg',
+		  },
+		  {
+		    id: 3,
+		    name: 'PyTorch',
+		    path: '/assets/pytorch.svg',
+		  },
+		  {
+		    id: 4,
+		    name: 'Scikit-learn',
+		    path: '/assets/sklearn.png',
+		  },
+		  {
+		    id: 5,
+		    name: 'CUDA',
+		    path: '/assets/cuda.svg',
+		  },
+		  {
+		    id: 6,
+		    name: 'ONNX Runtime',
+		    path: '/assets/onnx-runtime.svg',
+		  },
+		],
 	},
   {
     title: 'NutriLens - AI-Powered Nutrition Assistant',
@@ -174,6 +210,10 @@ export const myProject = [
       'Integrated Claude via OpenRouter API to offer intelligent meal assessments and promote healthier eating habits. Designed for commercial production-grade deployment with clean architecture, modular code, and scalable backend. Integrated Claude (via OpenRouter API), deployed on Vercel, and secured using TypeScript, Axios, and .env configs.',
     href: 'https://nutrilens-update3-t2fh.vercel.app/',
     texture: '/textures/project/project1.mp4',
+    groupScale: 1.7,
+    modelScale: 0.85,
+    modelPosition: [0, -0.2, 0],
+    modelRotation: [0, Math.PI * 0.15, 0],
     logo: '/assets/project-logo1.png',
     logoStyle: {
       backgroundColor: '#2A1816',
@@ -211,6 +251,10 @@ export const myProject = [
       'Designed and deployed the MVP with role-based access control, real-time resident approvals, and PDF export of visitor logs. Architected for commercial production-grade deployment on Vercel, featuring scalable authentication, Firestore, and cloud storage.',
     href: 'https://gate-log-visitor-management-system-mu.vercel.app/',
     texture: '/textures/project/project2.mp4',
+    groupScale: 1.75,
+    modelScale: 0.9,
+    modelPosition: [0, -0.25, 0],
+    modelRotation: [0, Math.PI * 0.12, 0],
     logo: '/assets/project-logo2.png',
     logoStyle: {
       backgroundColor: '#13202F',

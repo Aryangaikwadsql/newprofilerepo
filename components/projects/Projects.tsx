@@ -99,7 +99,7 @@ const Projects = () => {
           </div>
         </div>
 
-        <div className="border border-black-300 bg-black-200 rounded-lg h-96 md:h-full overflow-hidden">
+        <div className="relative border border-black-300 bg-black-200 rounded-lg h-96 md:h-full overflow-hidden">
           {currentProject.videoOnly ? (
             <video
               className="h-full w-full object-cover"
@@ -111,22 +111,36 @@ const Projects = () => {
               preload="metadata"
             />
           ) : (
-            <Canvas
-              dpr={[1, 1]}
-              frameloop={isVisible ? 'always' : 'never'}
-              gl={{ antialias: false, powerPreference: 'high-performance' }}
-            >
-              <ambientLight intensity={Math.PI} />
-              <directionalLight position={[10, 10, 5]} />
-              <Center>
-                <Suspense fallback={<CanvasLoader />}>
-                  <group scale={2} position={[0, -3, 0]} rotation={[0, -0.1, 0]}>
-                    <DemoComputer texture={currentProject.texture} />
-                  </group>
-                </Suspense>
-              </Center>
-              <OrbitControls maxPolarAngle={Math.PI / 2} enableZoom={false} />
-            </Canvas>
+            <>
+              <Canvas
+                dpr={[1, 1]}
+                frameloop={isVisible ? 'always' : 'never'}
+                gl={{ antialias: false, powerPreference: 'high-performance' }}
+              >
+                <ambientLight intensity={Math.PI} />
+                <directionalLight position={[10, 10, 5]} />
+                <Center>
+                  <Suspense fallback={<CanvasLoader />}>
+                    <group
+                      scale={currentProject.groupScale || 1.5}
+                      position={currentProject.modelPath ? [0, -0.8, 0] : [0, -2.2, 0]}
+                      rotation={[0, -0.1, 0]}>
+                      <DemoComputer
+                        texture={currentProject.texture}
+                        modelPath={currentProject.modelPath}
+                        modelScale={currentProject.modelScale}
+                        modelPosition={currentProject.modelPosition}
+                        modelRotation={currentProject.modelRotation}
+                      />
+                    </group>
+                  </Suspense>
+                </Center>
+                <OrbitControls maxPolarAngle={Math.PI / 2} enableZoom={false} />
+              </Canvas>
+              <div className="pointer-events-none absolute bottom-4 left-4 z-10 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs text-white/80 shadow-lg backdrop-blur-md">
+                [ 360° Interactive ]
+              </div>
+            </>
           )}
         </div>
       </div>
